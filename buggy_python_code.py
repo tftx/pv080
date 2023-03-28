@@ -44,13 +44,13 @@ def fetch_website(urllib_version, url):
 
 def load_yaml(filename):
     stream = open(filename)
-    deserialized_data = yaml.safe_load(stream, Loader=yaml.Loader) #deserializing data
+    deserialized_data = yaml.safe_load(stream)  # deserializing data
     return deserialized_data
 
 
-def authenticate(password):
+def authenticate(pswrd):
     # Assert that the password is correct
-    assert password == "Iloveyou", "Invalid password!"
+    assert pswrd == "Iloveyou", "Invalid password!"
     print("Successfully authenticated!")
 
 
@@ -75,4 +75,3 @@ if __name__ == '__main__':
     elif choice == "4":
         password = input("Enter master password: ")
         authenticate(password)
-

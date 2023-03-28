@@ -29,7 +29,9 @@ def print_nametag(format_string, person):
 
 
 def fetch_website(urllib_version, url):
+
     # Import the requested version (2 or 3) of urllib
+    urllib_version = urllib_version
     exec(f"import urllib{urllib_version} as urllib", globals())
     # Fetch and print the requested URL
  
@@ -42,7 +44,7 @@ def fetch_website(urllib_version, url):
 
 def load_yaml(filename):
     stream = open(filename)
-    deserialized_data = yaml.load(stream, Loader=yaml.Loader) #deserializing data
+    deserialized_data = yaml.safe_load(stream, Loader=yaml.Loader) #deserializing data
     return deserialized_data
 
 
@@ -59,6 +61,8 @@ if __name__ == '__main__':
     print("3. Yaml deserialization vulnerability: use string=file.yaml")
     print("4. Use of assert statements vulnerability: run program with -O argument")
     choice = input("Select vulnerability: ")
+    while choice not in ["1", "2", "3", "4"]:
+        choice = input("Select vulnerability: ")
     if choice == "1": 
         new_person = Person("Vickie")  
         print_nametag(input("Please format your nametag: "), new_person)
